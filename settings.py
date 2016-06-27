@@ -243,6 +243,10 @@ actress = {
             'type': 'string',
             'required': True,
         },
+        'image_cover_url': {
+            'type': 'string',
+            'required': True,
+        }
     }
 }
 
