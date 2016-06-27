@@ -218,6 +218,9 @@ avmoo = {
         'actress': {
             'type':'list'
         },
+        'sample_images': {
+            'type': 'list'
+        }
     }
 }
 
