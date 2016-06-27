@@ -13,7 +13,10 @@ def on_fetched_item(resource_name, response):
     print 'finished on_fetched_item!'
 
 def post_get_callback(resource, request, response):
-    print resource
-    print request.headers
-    print request.headers['deviceid']
-    print response
+    try:
+        print resource
+        print request.headers
+        print request.headers['deviceid']
+        print response
+    except Exception,e:
+        print Exception,':', e
