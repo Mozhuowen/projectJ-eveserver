@@ -1,16 +1,21 @@
 #!coding=utf-8
 
-import mongoutil
+from mongodb import service
+from settings import models
 
 def pre_GET(resource, request, lookup):
-    print 'pre_GET'
-    print resource
-    print request
-    print lookup
+    pass
+    # print 'pre_GET'
+    # print resource
+    # print request
+    # print lookup
+
 
 def on_fetched_item(resource_name, response):
-    mongoutil.on_view_resource_item(resource_name,response)
+    # mongoutil.on_view_resource_item(resource_name,response)
+    service.increase_resource_viewcount(models.get(resource_name), response['_id'])
     print 'finished on_fetched_item!'
+
 
 def post_get_callback(resource, request, response):
     try:

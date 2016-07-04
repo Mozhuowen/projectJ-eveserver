@@ -79,4 +79,5 @@ def on_view_movie_item(resource,responseDict):
 
     getMovieCollection().update({'_id':ObjectId(responseDict['_id'])},movie,upsert=True)
 
-db = __init__()
+db = '123'
+# db = __init__()

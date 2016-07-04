@@ -18,7 +18,26 @@
     :license: BSD, see LICENSE for more details.
 """
 
-import os
+from mongodb import model
+import controller
+
+
+baseresponse = {
+    'status': 1,
+    'message': 'OK',
+    'data': {}
+}
+
+models = {
+    'movie': model.Movie,
+    'avmoo': model.Avmoo,
+    'actress': model.Actress,
+    'movies': model.Movies
+}
+
+common_actions = {
+    'do_good': controller.do_good,
+}
 
 # We want to seamlessy run our API both locally and on Heroku. If running on
 # Heroku, sensible DB connection settings are stored in environment variables.
@@ -184,7 +203,7 @@ movies = {
         },
         'images': {
             'type':'list',
-        }
+        },
     }
 }
 
@@ -200,7 +219,7 @@ avmoo = {
             'required': True,
         },
         'publishtime': {
-            'type':'string',
+            'type': 'string',
             'required': True,
         },
         'length': {
@@ -216,10 +235,29 @@ avmoo = {
             'required': True,
         },
         'actress': {
-            'type':'list'
+            'type': 'list'
         },
         'sample_images': {
             'type': 'list'
+        },
+        'publisher': {
+            'type': 'dict',
+            'schema': {
+                'publisher': {'type': 'string'},
+                'code': {'type': 'string'}
+            }
+        },
+        'series': {
+            'type': 'dict',
+        },
+        'director': {
+            'type': 'dict',
+        },
+        'genre': {
+            'type': 'list',
+        },
+        'maker': {
+            'type': 'list',
         }
     }
 }
