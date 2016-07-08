@@ -31,8 +31,8 @@ def new_user(request):
     except Exception, e:
         return make_my_response(result_data(0, 0,), status_code=500)
 
-    userservice.new_user(deviceid, userid)
-    return make_my_response(result_data(1, 1,))
+    result = userservice.new_user(deviceid, userid)
+    return make_my_response(result_data(result.to_mongo(), 1,))
 
 
 def my_action(fuc, request, resource, item_id):

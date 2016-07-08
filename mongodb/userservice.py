@@ -13,7 +13,6 @@ def new_user(deviceid, userid):
         user.logindate = datetime.now()
         user.deviceid = deviceid
         user.update()
-        return True
     elif User.objects(deviceid=deviceid).__len__() > 0:
         user = User.objects(deviceid=deviceid)[0]
         user.logindate = datetime.now()
@@ -21,4 +20,4 @@ def new_user(deviceid, userid):
     else:
         user = User(userid=userid, deviceid=deviceid, device_ids=[deviceid, ], createdate=datetime.now(), logindate=datetime.now())
         user.save()
-        return True
+    return user
