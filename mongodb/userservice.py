@@ -6,6 +6,7 @@ from datetime import datetime
 
 def new_user(deviceid, userid):
 
+    user = None
     if userid.__len__() > 0:
         user = User.objects(userid=userid)
     if user.__len__() > 0:
