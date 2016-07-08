@@ -1,6 +1,7 @@
 #!coding=utf-8
 
 import settings
+from mongodb.model import *
 
 
 def result_data(data, status, message=''):
@@ -12,8 +13,12 @@ def find_all_objects(model):
     return model.objects
 
 
-def find_object_by_id(model, id):
+def find_objects_by_id(model, id):
     return model.objects(id=id)
+
+
+def check_email_exists(email):
+    return User.objects(email=email).__len__() > 0
 
 
 def increase_resource_viewcount(model, id):
@@ -21,7 +26,7 @@ def increase_resource_viewcount(model, id):
     if item.view_count is None:
         item.view_count = 1
     else:
-        item.view_count +=1
+        item.view_count += 1
     try:
         item.save()
     except Exception,e:
@@ -49,10 +54,10 @@ def doGoodForResource(goodaction, resource, itemid):
     return result_data(1, 1, )
 
 
-def on_view_resource_item(resource,object):
-    item = find_object_by_id(resource,object['_id'])
+def on_view_resource_item(resource, obj):
+    item = find_objects_by_id(resource, obj['_id'])
     if not item.has_key('view_count'):
         item['view_count'] = 1
     else:
-        item['view_count'] = item['view_count'] + 1
+        item['view_count'] += 1
 

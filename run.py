@@ -22,6 +22,7 @@ import controller
 import settings
 from flask import request,make_response
 
+
 # Heroku support: bind to PORT if defined, otherwise default to 5000.
 if 'PORT' in os.environ:
     port = int(os.environ.get('PORT'))
@@ -32,6 +33,7 @@ else:
     port = 5001
     host = '0.0.0.0'
 
+
 app = Eve()
 app.on_fetched_item += eventhook.on_fetched_item
 app.on_post_GET += eventhook.post_get_callback
@@ -40,6 +42,17 @@ app.on_post_GET += eventhook.post_get_callback
 @app.route('/action/<action>/<resource>/<item_id>/')
 def test_hello(action, resource, item_id):
     return controller.my_action(settings.common_actions.get(action), request, resource, item_id)
+
+
+@app.route('/test/<id>')
+def test(id):
+    return controller.test_method(id)
+
+
+@app.route('/action/<action>')
+def user_action(action):
+    return controller.user_action(settings.common_actions.get(action), request)
+
 
 if __name__ == '__main__':
     app.run(host=host, port=port,debug=True)

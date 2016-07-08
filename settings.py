@@ -37,6 +37,7 @@ models = {
 
 common_actions = {
     'do_good': controller.do_good,
+    'new_user': controller.new_user,
 }
 
 # We want to seamlessy run our API both locally and on Heroku. If running on
@@ -54,7 +55,7 @@ MONGODB_COLLECTION_USER = "user"
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
 # (if you omit this line, the API will default to ['GET'] and provide
 # read-only access to the endpoint).
-RESOURCE_METHODS = ['GET','POST', 'DELETE']
+RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 
 # Enable reads (GET), edits (PATCH) and deletes of individual items
 # (defaults to read-only item access).
@@ -293,7 +294,7 @@ actress = {
 DOMAIN = {
     'people': people,
     'works': works,
-    'question':question,
+    'question': question,
     'movies': movies,
     'avmoo': avmoo,
     'actress': actress,
