@@ -6,7 +6,7 @@ from datetime import datetime
 
 def new_user(deviceid, userid):
 
-    user = None
+    user = []
     if userid.__len__() > 0:
         user = User.objects(userid=userid)
     if user.__len__() > 0:
@@ -15,7 +15,7 @@ def new_user(deviceid, userid):
         user.update()
         return True
     elif User.objects(deviceid=deviceid).__len__() > 0:
-        user = User.objects(deviceid=deviceid)
+        user = User.objects(deviceid=deviceid)[0]
         user.logindate = datetime.now()
         user.update
     else:
