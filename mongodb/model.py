@@ -124,3 +124,5 @@ class User(Document):
     viewactresshis = ListField()
     createdate = DateTimeField()
     logindate = DateTimeField()
+    haslogin = IntField()
+    sex = IntField()
