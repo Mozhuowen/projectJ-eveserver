@@ -13,7 +13,7 @@ def new_user(deviceid, userid):
         user = user[0]
         user.logindate = datetime.now()
         user.deviceid = deviceid
-        user.update()
+        user.save()
     # elif User.objects(deviceid=deviceid).__len__() > 0:
     #     user = User.objects(deviceid=deviceid)[0]
     #     user.logindate = datetime.now()
