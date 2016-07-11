@@ -8,7 +8,7 @@ def new_user(deviceid, userid):
 
     user = []
     if userid.__len__() > 0:
-        user = User.objects(userid=userid)
+        user = User.objects(id=userid)
     if user.__len__() > 0:
         user = user[0]
         user.logindate = datetime.now()
