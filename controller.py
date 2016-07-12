@@ -4,7 +4,7 @@ from flask import make_response
 from bson import json_util
 from util import json_util_jj,helper
 import mongodb
-from mongodb import userservice,model
+from mongodb import userservice, model
 import copy
 import settings
 
@@ -33,6 +33,19 @@ def new_user(request):
 
     result = userservice.new_user(deviceid, userid)
     return make_my_response(result_data(result.to_mongo(), 1,))
+
+
+def login(request):
+    try:
+        userid = request.headers['UserId']
+        deviceid = request.headers['DeviceId']
+        email = request.args.get('email')
+        passwd = request.args.get('passwd')
+    except Exception, e:
+        return make_my_response(result_data(0, 0,), status_code=500)
+
+    result, status_code, message = userservice.login(userid=userid, deviceid=deviceid, email=email, passwd=passwd)
+    return make_my_response(result_data(result, status_code, message))
 
 
 def my_action(fuc, request, resource, item_id):
