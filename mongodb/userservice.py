@@ -31,8 +31,9 @@ def login(userid='', deviceid='', email='', passwd=''):
         user = new_user(deviceid, userid)
         user.email = email
         user.passwd = passwd
+        user.haslogin = 1
         user.save()
-    elif not check_email(email=email):
+    elif not check_hasemail(email=email):
         return {}, 0, 'email 不存在'
     elif not check_passwd(email=email, passwd=passwd):
         return {}, 0, '密码不正确'
@@ -45,10 +46,26 @@ def login(userid='', deviceid='', email='', passwd=''):
 
 
 def regist(userid='', deviceid='', email='', passwd=''):
-    pass
+
+    user = []
+    if userid.__len__() == 0:
+        user = new_user(deviceid, userid)
+        user.email = email
+        user.passwd = passwd
+        user.haslogin = 1
+        user.save()
+    elif check_hasemail(email):
+        return {}, 0, '该email已经存在'
+    else:
+        user = User.objects(id=userid)[0]
+        user.email = email
+        user.passwd = passwd
+        user.haslogin = 1
+        user.save()
+    return user.to_mongo(), 1, ''
 
 
-def check_email(email=''):
+def check_hasemail(email=''):
     user = User.objects(email=email)
     return user.__len__() > 0
 

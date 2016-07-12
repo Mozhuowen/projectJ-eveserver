@@ -48,6 +48,19 @@ def login(request):
     return make_my_response(result_data(result, status_code, message))
 
 
+def regist(request):
+    try:
+        userid = request.headers['UserId']
+        deviceid = request.headers['DeviceId']
+        email = request.args.get('email')
+        passwd = request.args.get('passwd')
+    except Exception, e:
+        return make_my_response(result_data(0, 0, ), status_code=500)
+
+    result, status_code, message = userservice.regist(userid=userid, deviceid=deviceid, email=email, passwd=passwd)
+    return make_my_response(result_data(result, status_code, message))
+
+
 def my_action(fuc, request, resource, item_id):
     return fuc(request, resource, item_id)
 
