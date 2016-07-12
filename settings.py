@@ -39,7 +39,7 @@ common_actions = {
     'do_good': controller.do_good,
     'new_user': controller.new_user,
     'login': controller.login,
-    'regist': controller
+    'regist': controller.regist,
 }
 
 # We want to seamlessy run our API both locally and on Heroku. If running on
