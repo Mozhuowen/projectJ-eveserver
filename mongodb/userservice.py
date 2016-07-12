@@ -33,9 +33,9 @@ def login(userid='', deviceid='', email='', passwd=''):
         user.passwd = passwd
         user.save()
     elif not check_email(email=email):
-        return 0, 0, 'email 不存在'
+        return {}, 0, 'email 不存在'
     elif not check_passwd(email=email, passwd=passwd):
-        return 0, 0, '密码不正确'
+        return {}, 0, '密码不正确'
     else:
         user = User.objects(email=email)[0]
         user.logindate = datetime.now()
