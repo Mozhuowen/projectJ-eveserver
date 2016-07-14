@@ -1,6 +1,6 @@
 #!coding=utf-8
 
-from flask import make_response, url_for
+from flask import make_response, send_file
 from bson import json_util
 from util import json_util_jj,helper
 import mongodb
@@ -79,7 +79,7 @@ def upload_avater(request):
 
 
 def get_file(filename):
-    url_for('static', filename=filename)
+    return send_file('/usr/local/python/projectJ-eveserver/static/'+filename)
 
 
 def my_action(fuc, request, resource, item_id):
