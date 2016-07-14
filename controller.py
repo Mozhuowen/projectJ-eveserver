@@ -1,6 +1,6 @@
 #!coding=utf-8
 
-from flask import make_response
+from flask import make_response, url_for
 from bson import json_util
 from util import json_util_jj,helper
 import mongodb
@@ -76,6 +76,10 @@ def change_avater(request):
 def upload_avater(request):
     result, status_code, message = fileservice.save_upload_file(request)
     return make_my_response(result_data(result, status_code, message))
+
+
+def get_file(filename):
+    url_for('static', filename)
 
 
 def my_action(fuc, request, resource, item_id):

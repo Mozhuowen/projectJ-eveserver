@@ -54,5 +54,10 @@ def user_action(action):
     return controller.user_action(settings.common_actions.get(action), request)
 
 
+@app.route('/getfile/<filename>')
+def get_file(filename):
+    return controller.get_file(filename)
+
+
 if __name__ == '__main__':
     app.run(host=host, port=port,debug=True)
