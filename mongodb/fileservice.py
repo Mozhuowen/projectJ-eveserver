@@ -3,14 +3,12 @@ from util import str_util
 
 
 def save_upload_file(request):
-    print request.headers
     try:
         if request.method == 'POST':
             file = request.files['file']
             if file and allowed_file(file.filename):
                 filename = str_util.get_random_string(16) + '.' + get_file_type(file.filename)
-                print filename
-                file.save('/usr/local/python/jjimages/', filename)
+                file.save('/usr/local/python/jjimages/'+filename)
                 return {
                     'filename': filename
                 }, 1, ''
