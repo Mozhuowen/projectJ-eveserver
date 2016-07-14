@@ -4,7 +4,7 @@ from flask import make_response
 from bson import json_util
 from util import json_util_jj,helper
 import mongodb
-from mongodb import userservice, model
+from mongodb import userservice, model,fileservice
 import copy
 import settings
 
@@ -58,6 +58,23 @@ def regist(request):
         return make_my_response(result_data(0, 0, ), status_code=500)
 
     result, status_code, message = userservice.regist(userid=userid, deviceid=deviceid, email=email, passwd=passwd)
+    return make_my_response(result_data(result, status_code, message))
+
+
+def change_username(request):
+    pass
+
+
+def change_nickname(request):
+    pass
+
+
+def change_avater(request):
+    pass
+
+
+def upload_avater(request):
+    result, status_code, message = fileservice.save_upload_file(request)
     return make_my_response(result_data(result, status_code, message))
 
 

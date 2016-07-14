@@ -2,6 +2,7 @@
 
 from model import User
 from datetime import datetime
+from util import str_util
 
 
 def new_user(deviceid, userid):
@@ -52,6 +53,7 @@ def regist(userid='', deviceid='', email='', passwd=''):
         user = new_user(deviceid, userid)
         user.email = email
         user.passwd = passwd
+        user.nick_name = str_util.get_random_string(8)
         user.haslogin = 1
         user.save()
     elif check_hasemail(email):
@@ -60,6 +62,7 @@ def regist(userid='', deviceid='', email='', passwd=''):
         user = User.objects(id=userid)[0]
         user.email = email
         user.passwd = passwd
+        user.nick_name = str_util.get_random_string(8)
         user.haslogin = 1
         user.save()
     return user.to_mongo(), 1, ''

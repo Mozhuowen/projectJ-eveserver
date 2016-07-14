@@ -40,6 +40,7 @@ common_actions = {
     'new_user': controller.new_user,
     'login': controller.login,
     'regist': controller.regist,
+    'upload_avater': controller.upload_avater,
 }
 
 # We want to seamlessy run our API both locally and on Heroku. If running on
