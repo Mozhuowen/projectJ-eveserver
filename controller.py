@@ -79,7 +79,7 @@ def upload_avater(request):
 
 
 def get_file(filename):
-    url_for('static', filename)
+    url_for('static', filename=filename)
 
 
 def my_action(fuc, request, resource, item_id):
