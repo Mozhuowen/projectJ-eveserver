@@ -49,7 +49,7 @@ def test(id):
     return controller.test_method(id)
 
 
-@app.route('/action/<action>')
+@app.route('/action/<action>', methods=['GET', 'POST'])
 def user_action(action):
     return controller.user_action(settings.common_actions.get(action), request)
 
