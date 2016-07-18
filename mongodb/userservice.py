@@ -15,10 +15,10 @@ def new_user(deviceid, userid):
         user.logindate = datetime.now()
         user.deviceid = deviceid
         user.save()
-    # elif User.objects(deviceid=deviceid).__len__() > 0:
-    #     user = User.objects(deviceid=deviceid)[0]
-    #     user.logindate = datetime.now()
-    #     user.update
+    elif User.objects(deviceid=deviceid).__len__() > 0:
+        user = User.objects(deviceid=deviceid)[0]
+        user.logindate = datetime.now()
+        user.save()
     else:
         user = User(deviceid=deviceid, device_ids=[deviceid, ], createdate=datetime.now(), haslogin=0)
         user.save()
