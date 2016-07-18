@@ -70,7 +70,12 @@ def change_nickname(request):
 
 
 def change_avater(request):
-    pass
+    try:
+        userid = request.headers['UserId']
+        deviceid = request.headers['DeviceId']
+        image = request.args.get('image')
+    except Exception, e:
+        return make_my_response(result_data(0, 0, ), status_code=500)
 
 
 def upload_avater(request):

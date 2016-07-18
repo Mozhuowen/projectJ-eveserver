@@ -72,6 +72,17 @@ def check_hasemail(email=''):
     user = User.objects(email=email)
     return user.__len__() > 0
 
+
 def check_passwd(email='', passwd=''):
     user = User.objects(email=email)[0]
     return user.passwd == passwd
+
+
+def chage_avater(userid='', image=''):
+    user = User.objects(id=userid)
+    if user.__len__() == 0:
+        return {}, 0, '用户不存在'
+    user = user[0]
+    user.avater = image
+    user.save()
+    return user.to_mongo(), 1, ''
