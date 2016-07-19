@@ -61,12 +61,30 @@ def regist(request):
     return make_my_response(result_data(result, status_code, message))
 
 
-def change_username(request):
-    pass
+def change_signature(request):
+    try:
+        userid = request.headers['UserId']
+        deviceid = request.headers['DeviceId']
+        signature = request.args.get('signature')
+    except Exception, e:
+        print Exception, e
+        return make_my_response(result_data(0, 0, ), status_code=500)
+
+    result, status_code, message = userservice.change_signature(userid=userid, image=signature)
+    return make_my_response(result_data(result, status_code, message))
 
 
 def change_nickname(request):
-    pass
+    try:
+        userid = request.headers['UserId']
+        deviceid = request.headers['DeviceId']
+        nickname = request.args.get('nickname')
+    except Exception, e:
+        print Exception,e
+        return make_my_response(result_data(0, 0, ), status_code=500)
+
+    result, status_code, message = userservice.change_nickname(userid=userid, image=nickname)
+    return make_my_response(result_data(result, status_code, message))
 
 
 def change_avater(request):
@@ -76,6 +94,9 @@ def change_avater(request):
         image = request.args.get('image')
     except Exception, e:
         return make_my_response(result_data(0, 0, ), status_code=500)
+
+    result, status_code, message = userservice.chage_avater(userid=userid, image=image)
+    return make_my_response(result_data(result, status_code, message))
 
 
 def upload_avater(request):

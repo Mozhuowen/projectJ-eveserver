@@ -78,7 +78,7 @@ def check_passwd(email='', passwd=''):
     return user.passwd == passwd
 
 
-def chage_avater(userid='', image=''):
+def change_avater(userid='', image=''):
     user = User.objects(id=userid)
     if user.__len__() == 0:
         return {}, 0, '用户不存在'
@@ -86,3 +86,27 @@ def chage_avater(userid='', image=''):
     user.avater = image
     user.save()
     return user.to_mongo(), 1, ''
+
+
+def change_nickname(userid='', name=''):
+    user = User.objects(id=userid)
+    if user.__len__() == 0:
+        return {}, 0, '用户不存在'
+    user = user[0]
+    user.nick_name = name
+    user.save()
+    return {
+        'nickname': name
+           }, 1, ''
+
+
+def change_signature(userid='', signature=''):
+    user = User.objects(id=userid)
+    if user.__len__() == 0:
+        return {}, 0, '用户不存在'
+    user = user[0]
+    user.signature = signature
+    user.save()
+    return {
+        'signature': signature
+           }, 1, ''

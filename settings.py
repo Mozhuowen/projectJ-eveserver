@@ -41,6 +41,9 @@ common_actions = {
     'login': controller.login,
     'regist': controller.regist,
     'upload_avater': controller.upload_avater,
+    'change_avater': controller.change_avater,
+    'change_nickname': controller.change_nickname,
+    'change_signature': controller.change_signature,
 }
 
 # We want to seamlessy run our API both locally and on Heroku. If running on
@@ -291,6 +294,7 @@ actress = {
         }
     }
 }
+
 
 # The DOMAIN dict explains which resources will be available and how they will
 # be accessible to the API consumer.
