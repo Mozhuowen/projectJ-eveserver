@@ -74,6 +74,8 @@ CACHE_EXPIRES = 20
 
 SOFT_DELETE = True
 SORTING = True
+
+
 # Our API will expose two resources (MongoDB collections): 'people' and
 # 'works'. In order to allow for proper data validation, we define beaviour
 # and structure.
