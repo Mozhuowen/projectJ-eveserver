@@ -126,6 +126,7 @@ people = {
     }
 }
 
+
 works = {
     # if 'item_title' is not provided Eve will just strip the final
     # 's' from resource name, and use it as the item_title.
