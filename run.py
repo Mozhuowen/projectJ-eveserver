@@ -35,7 +35,7 @@ else:
     host = '0.0.0.0'
 
 
-app = Eve()
+app = Eve(settings='/usr/local/python/projectJ-eveserver/settings.py')
 app.wsgi_app = ProxyFix(app.wsgi_app)
 app.on_fetched_item += eventhook.on_fetched_item
 app.on_post_GET += eventhook.post_get_callback
