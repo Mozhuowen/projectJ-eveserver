@@ -36,7 +36,7 @@ else:
 
 settings_path = os.path.join(os.path.abspath('.'), 'settings.py')
 app = Eve(settings=settings_path)
-
+app.debug = True
 app.wsgi_app = ProxyFix(app.wsgi_app)
 app.on_fetched_item += eventhook.on_fetched_item
 app.on_post_GET += eventhook.post_get_callback
