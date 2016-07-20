@@ -34,8 +34,8 @@ else:
     port = 5001
     host = '0.0.0.0'
 
-
-app = Eve(settings='/usr/local/python/projectJ-eveserver/settings.py')
+settings_path = os.path.join(os.path.abspath('.'), 'settings.py')
+app = Eve(settings=settings_path)
 
 app.wsgi_app = ProxyFix(app.wsgi_app)
 app.on_fetched_item += eventhook.on_fetched_item
