@@ -126,3 +126,6 @@ class User(Document):
     logindate = DateTimeField()
     haslogin = IntField()
     sex = IntField()
+    follow_count = IntField()
+    fans_count = IntField()
+    share_count = IntField()

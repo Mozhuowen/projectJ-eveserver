@@ -55,6 +55,9 @@ def regist(userid='', deviceid='', email='', passwd=''):
         user.passwd = passwd
         user.nick_name = str_util.get_random_string(8)
         user.haslogin = 1
+        user.follow_count = 0
+        user.fans_count = 0
+        user.share_count = 0
         user.save()
     elif check_hasemail(email):
         return {}, 0, '该email已经存在'
@@ -64,6 +67,9 @@ def regist(userid='', deviceid='', email='', passwd=''):
         user.passwd = passwd
         user.nick_name = str_util.get_random_string(8)
         user.haslogin = 1
+        user.follow_count = 0
+        user.fans_count = 0
+        user.share_count = 0
         user.save()
     return user.to_mongo(), 1, ''
 
