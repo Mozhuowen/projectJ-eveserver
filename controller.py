@@ -70,7 +70,7 @@ def change_signature(request):
         print Exception, e
         return make_my_response(result_data(0, 0, ), status_code=500)
 
-    result, status_code, message = userservice.change_signature(userid=userid, image=signature)
+    result, status_code, message = userservice.change_signature(userid=userid, signature=signature)
     return make_my_response(result_data(result, status_code, message))
 
 
@@ -83,7 +83,7 @@ def change_nickname(request):
         print Exception,e
         return make_my_response(result_data(0, 0, ), status_code=500)
 
-    result, status_code, message = userservice.change_nickname(userid=userid, image=nickname)
+    result, status_code, message = userservice.change_nickname(userid=userid, name=nickname)
     return make_my_response(result_data(result, status_code, message))
 
 
