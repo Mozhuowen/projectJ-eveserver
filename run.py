@@ -21,6 +21,7 @@ from eve import Eve
 import controller
 import settings
 from flask import request,make_response
+from werkzeug.contrib.fixers import ProxyFix
 
 
 # Heroku support: bind to PORT if defined, otherwise default to 5000.
@@ -35,6 +36,7 @@ else:
 
 
 app = Eve()
+app.wsgi_app = ProxyFix(app.wsgi_app)
 app.on_fetched_item += eventhook.on_fetched_item
 app.on_post_GET += eventhook.post_get_callback
 
