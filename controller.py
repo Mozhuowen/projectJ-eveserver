@@ -95,7 +95,7 @@ def change_avater(request):
     except Exception, e:
         return make_my_response(result_data(0, 0, ), status_code=500)
 
-    result, status_code, message = userservice.chage_avater(userid=userid, image=image)
+    result, status_code, message = userservice.change_avater(userid=userid, image=image)
     return make_my_response(result_data(result, status_code, message))
 
 
