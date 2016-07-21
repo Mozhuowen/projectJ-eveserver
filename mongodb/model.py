@@ -41,6 +41,7 @@ class Avmoo(Document):
     maker = DictField()
     image_large_url = StringField()
     like_count = IntField()
+    sample_images = ListField(StringField())
 
 
 class Movies(Document):
@@ -89,3 +90,5 @@ class Like(Document):
     userid = StringField()
     movie_code = StringField()
     movieid = StringField()
+    update_time = DateTimeField()
+    valid = IntField()

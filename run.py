@@ -52,13 +52,14 @@ def test(id):
     return controller.test_method(id)
 
 
-@app.route('/action/<action>', methods=['GET', 'POST'])
+@app.route('/action/<action>/', methods=['GET', 'POST'])
 def user_action(action):
-    try:
-        return controller.user_action(settings.common_actions.get(action), request)
-    except Exception, e:
-        print Exception, e
-        return controller.make_my_response(controller.result_data(0, 0, ), status_code=500)
+    return controller.user_action(settings.common_actions.get(action), request)
+    # try:
+    #     return controller.user_action(settings.common_actions.get(action), request)
+    # except Exception, e:
+    #     print Exception, e
+    #     return controller.make_my_response(controller.result_data(0, 0, ), status_code=500)
 
 
 @app.route('/getfile/<filename>')

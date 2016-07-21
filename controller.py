@@ -110,7 +110,13 @@ def get_file(filename):
 
 def like_movie(request):
     params = get_params(request)
-    result, status_code, message = movieservice.like_movie(userid=params['userid'], movie_code=params['code'])
+    result, status_code, message = movieservice.like_movie(userid=params.get('userid'), movie_code=params.get('code'))
+    return make_my_response(result_data(result, status_code, message))
+
+
+def dislike_movie(request):
+    params = get_params(request)
+    result, status_code, message = movieservice.dislike_movie(userid=params.get('userid'), movie_code=params.get('code'))
     return make_my_response(result_data(result, status_code, message))
 
 
@@ -126,10 +132,10 @@ def user_action(fuc, request):
 
 
 def get_params(request):
-    param_map = request.args
-    param_map['userid'] = request.headers['UserId']
-    param_map['deviceid'] = request.headers['DeviceId']
-    return param_map
+    param_dict = request.args.to_dict()
+    param_dict['userid'] = request.headers['UserId']
+    param_dict['deviceid'] = request.headers['DeviceId']
+    return param_dict
 
 
 # test function

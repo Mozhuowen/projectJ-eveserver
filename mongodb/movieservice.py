@@ -14,14 +14,42 @@ def like_movie(userid='', movie_code=''):
         return {}, 0, '影片不存在'
 
     movie = Avmoo.objects(code=movie_code)[0]
-    like = Like(userid=userid, movie_code=movie.code, movieid=movie.id)
+
+    like = Like.objects(userid=userid, movie_code=movie_code)
+    if like.__len__() > 0:
+        like = like[0]
+        like.valid = 1
+        like.update_time = datetime.now()
+    else:
+        like = Like(userid=userid, movie_code=movie.code, movieid=str(movie.id), valid=1, update_time=datetime.now())
     like.save()
 
-    if movie.view_count is None:
-        movie.view_count = 1
+    if movie.like_count is None:
+        movie.like_count = 1
     else:
-        movie.view_count += 1
+        movie.like_count += 1
     movie.save()
+    return {}, 1, ''
+
+
+def dislike_movie(userid='', movie_code=''):
+    if not userservice.check_user_exist(userid=userid):
+        return {}, 0, '用户不存在'
+
+    if not check_movie_exist(movie_code=movie_code):
+        return {}, 0, '影片不存在'
+
+    like = Like.objects(userid=userid, movie_code=movie_code)
+    if like.__len__() == 0:
+        return {}, 0, '未收藏该影片'
+
+    movie = Avmoo.objects(code=movie_code)[0]
+    movie.like_count -= 1
+    movie.save()
+
+    like = like[0]
+    like.valid = 0
+    like.save()
     return {}, 1, ''
 
 
