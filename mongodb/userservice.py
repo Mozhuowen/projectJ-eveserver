@@ -84,6 +84,11 @@ def check_passwd(email='', passwd=''):
     return user.passwd == passwd
 
 
+def check_user_exist(userid=''):
+    user = User.objects(id=userid)
+    return user.__len__() > 0
+
+
 def change_avater(userid='', image=''):
     user = User.objects(id=userid)
     if user.__len__() == 0:

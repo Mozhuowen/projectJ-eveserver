@@ -13,12 +13,6 @@ class Movie(Document):
     semester = StringField()
     grades = ListField()
 
-    # def to_json(self):
-    #     return {
-    #         'semester': self.semester,
-    #         'grades': self.grades
-    #     }
-
 
 class Actress(Document):
     meta = {'queryset_class': JJQuerySet}
@@ -28,16 +22,6 @@ class Actress(Document):
     actressname = StringField()
     image_urls = ListField(StringField())
     actresscode = StringField()
-
-    # def to_json(self):
-    #     return {
-    #         'view_count': self.view_count,
-    #         'url_movies': self.url_movies,
-    #         'image_cover_url': self.image_cover_url,
-    #         'actressname': self.actressname,
-    #         'image_urls': self.image_urls,
-    #         'actresscode': self.actresscode
-    #     }
 
 
 class Avmoo(Document):
@@ -56,24 +40,7 @@ class Avmoo(Document):
     image_small_url = StringField()
     maker = DictField()
     image_large_url = StringField()
-
-    # def to_json(self):
-    #     return {
-    #         'publisher': self.publisher,
-    #         'code': self.code,
-    #         'title': self.title,
-    #         'series': self.series,
-    #         'publishtime': self.publishtime,
-    #         'image_urls': self.image_urls,
-    #         'director': self.director,
-    #         'length': self.length,
-    #         'url_detail': self.url_detail,
-    #         'actress': self.actress,
-    #         'genre': self.genre,
-    #         'image_small_url': self.image_small_url,
-    #         'maker': self.maker,
-    #         'image_large_url': self.image_large_url
-    #     }
+    like_count = IntField()
 
 
 class Movies(Document):
@@ -90,20 +57,6 @@ class Movies(Document):
     test_data = DateTimeField()
     semester = StringField()
     grades = ListField()
-
-    # def to_json(self):
-    #     return {
-    #         'view_count': self.view_count,
-    #         'good_count': self.good_count,
-    #         'title': self.title,
-    #         'image_urls': self.image_urls,
-    #         'url_detail': self.url_detail,
-    #         '_etag': self._etag,
-    #         'desc': self.desc,
-    #         '_updated': self._updated,
-    #         '_deleted': self._deleted,
-    #         # 'test_data': self.test_data.time()
-    #     }
 
 
 class User(Document):
@@ -129,3 +82,10 @@ class User(Document):
     follow_count = IntField()
     fans_count = IntField()
     share_count = IntField()
+
+
+class Like(Document):
+    meta = {'queryset_class': JJQuerySet}
+    userid = StringField()
+    movie_code = StringField()
+    movieid = StringField()

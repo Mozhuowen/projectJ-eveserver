@@ -4,7 +4,7 @@ from flask import make_response, send_file
 from bson import json_util
 from util import json_util_jj,helper
 import mongodb
-from mongodb import userservice, model, fileservice
+from mongodb import userservice, model, fileservice, movieservice
 import copy
 import settings
 
@@ -108,12 +108,28 @@ def get_file(filename):
     return send_file('/usr/local/python/projectJ-eveserver/static/'+filename)
 
 
+def like_movie(request):
+    params = get_params(request)
+    result, status_code, message = movieservice.like_movie(userid=params['userid'], movie_code=params['code'])
+    return make_my_response(result_data(result, status_code, message))
+
+
+###########-do not montify below-##################################
+
+
 def my_action(fuc, request, resource, item_id):
     return fuc(request, resource, item_id)
 
 
 def user_action(fuc, request):
     return fuc(request)
+
+
+def get_params(request):
+    param_map = request.args
+    param_map['userid'] = request.headers['UserId']
+    param_map['deviceid'] = request.headers['DeviceId']
+    return param_map
 
 
 # test function
