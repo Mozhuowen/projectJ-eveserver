@@ -44,6 +44,7 @@ common_actions = {
     'change_avater': controller.change_avater,
     'change_nickname': controller.change_nickname,
     'change_signature': controller.change_signature,
+    'like_movie': controller.like_movie,
 }
 
 
