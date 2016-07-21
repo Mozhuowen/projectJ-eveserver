@@ -53,6 +53,18 @@ def dislike_movie(userid='', movie_code=''):
     return {}, 1, ''
 
 
+def get_like_status(userid='', movie_code=''):
+    like = Like.objects(userid=userid, movie_code=movie_code, valid=1)
+    if like.__len__() > 0:
+        return {
+            'status': 1
+        }, 1, ''
+    else:
+        return {
+            'status': 0
+        }, 1, ''
+
+
 def check_movie_exist(movie_code=''):
     movie = Avmoo.objects(code=movie_code)
     return movie.__len__() > 0

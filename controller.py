@@ -120,6 +120,12 @@ def dislike_movie(request):
     return make_my_response(result_data(result, status_code, message))
 
 
+def get_like_status(request):
+    params = get_params(request)
+    result, status_code, message = movieservice.get_like_status(params.get('userid'), movie_code=params.get('code'))
+    return make_my_response(result_data(result, status_code, message))
+
+
 ###########-do not montify below-##################################
 
 
