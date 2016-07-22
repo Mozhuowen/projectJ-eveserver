@@ -128,7 +128,12 @@ def get_like_status(request):
 
 def get_user_like(request):
     params = get_params(request)
-    result, status_code, message = movieservice.get_user_like(params.get('userid'))
+    userid = ''
+    if params.has_key('otheruserid'):
+        userid = params.get('otheruserid')
+    else:
+        userid = params.get('userid')
+    result, status_code, message = movieservice.get_user_like(userid=userid, page=int(params.get('page')))
     return make_my_response(result_data(result, status_code, message))
 
 

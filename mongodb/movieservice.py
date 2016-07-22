@@ -70,9 +70,9 @@ def get_user_like(userid='', page=1):
     if likes.__len__() == 0:
         return {}, 1, ''
 
-    perPage = 26
+    per_page = 2
     like_codes = [i['movie_code'] for i in likes]
-    movies = Avmoo.objects(code__in=like_codes)[(page-1) * perPage:(page * perPage)-1]
+    movies = Avmoo.objects(code__in=like_codes)[(page-1) * per_page:(page * per_page)-1]
     return movies.to_mongo(), 1, ''
 
 
