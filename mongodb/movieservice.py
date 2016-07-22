@@ -65,6 +65,17 @@ def get_like_status(userid='', movie_code=''):
         }, 1, ''
 
 
+def get_user_like(userid='', page=1):
+    likes = Like.objects(userid=userid, valid=1)
+    if likes.__len__() == 0:
+        return {}, 1, ''
+
+    perPage = 26
+    like_codes = [i['movie_code'] for i in likes]
+    movies = Avmoo.objects(code__in=like_codes)[(page-1) * perPage:(page * perPage)-1]
+    return movies.to_mongo(), 1, ''
+
+
 def check_movie_exist(movie_code=''):
     movie = Avmoo.objects(code=movie_code)
     return movie.__len__() > 0

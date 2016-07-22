@@ -47,6 +47,7 @@ common_actions = {
     'like_movie': controller.like_movie,
     'dislike_movie': controller.dislike_movie,
     'get_like_status': controller.get_like_status,
+    'get_user_like': controller.get_user_like,
 }
 
 
