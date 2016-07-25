@@ -4,7 +4,7 @@ from flask import make_response, send_file
 from bson import json_util
 from util import json_util_jj,helper
 import mongodb
-from mongodb import userservice, model, fileservice, movieservice
+from mongodb import userservice, model, fileservice, movieservice, shareservice
 import copy
 import settings
 
@@ -139,9 +139,9 @@ def get_user_like(request):
 
 def create_share(request):
     params = get_params(request)
-    result, status_code, message = movieservice.get_like_status(params.get('userid')
-                                                                , params.get('content')
-                                                                , params.get('code'))
+    result, status_code, message = shareservice.create_share(userid=params.get('userid'),
+                                                             content=params.get('content'),
+                                                             movie_code=params.get('movie_code'))
     return make_my_response(result_data(result, status_code, message))
 
 
