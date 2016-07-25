@@ -66,12 +66,13 @@ def get_like_status(userid='', movie_code=''):
 
 
 def get_user_like(userid='', page=1):
-    likes = Like.objects(userid=userid, valid=1)
+    likes = Like.objects(userid=userid, valid=1).order_by('-update_time')
     if likes.__len__() == 0:
         return {}, 1, ''
 
     per_page = 26
     like_codes = [i['movie_code'] for i in likes]
+    print like_codes
     movies = Avmoo.objects(code__in=like_codes)[(page-1) * per_page:(page * per_page)-1]
     return movies.to_mongo(), 1, ''
 

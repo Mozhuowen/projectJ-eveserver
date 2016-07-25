@@ -92,3 +92,13 @@ class Like(Document):
     movieid = StringField()
     update_time = DateTimeField()
     valid = IntField()
+
+
+class Share(Document):
+    meta = {'queryset_class': JJQuerySet}
+    userid = StringField()
+    movie_code = StringField()
+    cover_image = StringField()
+    actress = StringField()
+    public_time = StringField()
+    content = StringField()

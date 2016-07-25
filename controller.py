@@ -137,6 +137,14 @@ def get_user_like(request):
     return make_my_response(result_data(result, status_code, message))
 
 
+def create_share(request):
+    params = get_params(request)
+    result, status_code, message = movieservice.get_like_status(params.get('userid')
+                                                                , params.get('content')
+                                                                , params.get('code'))
+    return make_my_response(result_data(result, status_code, message))
+
+
 ###########-do not montify below-##################################
 
 
