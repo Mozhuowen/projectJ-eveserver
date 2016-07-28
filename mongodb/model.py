@@ -104,5 +104,8 @@ class Simplemovie(EmbeddedDocument):
 class Share(Document):
     meta = {'queryset_class': JJQuerySet}
     userid = StringField()
+    nick_name = StringField()
+    avater = StringField()
+    time = DateTimeField()
     content = StringField()
     movie = EmbeddedDocumentField(Simplemovie)
