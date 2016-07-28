@@ -94,11 +94,15 @@ class Like(Document):
     valid = IntField()
 
 
-class Share(Document):
-    meta = {'queryset_class': JJQuerySet}
-    userid = StringField()
+class Simplemovie(EmbeddedDocument):
     movie_code = StringField()
     cover_image = StringField()
     actress = StringField()
     public_time = StringField()
+
+
+class Share(Document):
+    meta = {'queryset_class': JJQuerySet}
+    userid = StringField()
     content = StringField()
+    movie = EmbeddedDocumentField(Simplemovie)

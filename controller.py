@@ -145,6 +145,12 @@ def create_share(request):
     return make_my_response(result_data(result, status_code, message))
 
 
+def get_sharelist(request):
+    params = get_params(request)
+    result, status_code, message = shareservice.get_sharelist(page=int(params.get('page')))
+    return make_my_response(result_data(result, status_code, message))
+
+
 ###########-do not montify below-##################################
 
 

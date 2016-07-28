@@ -49,6 +49,7 @@ common_actions = {
     'get_like_status': controller.get_like_status,
     'get_user_like': controller.get_user_like,
     'create_share': controller.create_share,
+    'get_sharelist': controller.get_sharelist,
 }
 
 
